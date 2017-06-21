@@ -1,0 +1,30 @@
+{
+  "name": "tago-azure-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tago LLC",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "3.6.1",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-plugin-import": "2.0.0",
+    "eslint-plugin-jasmine": "1.8.1",
+    "eslint-plugin-jsx-a11y": "2.2.2",
+    "eslint-plugin-react": "6.3.0",
+    "jest": "15.1.1"
+  },
+  "dependencies": {
+    "axios": "0.15.2",
+    "co": "4.6.0",
+    "koa": "2.2.0",
+    "koa-body-parser": "1.1.2",
+    "moment": "2.18.0",
+    "pg": "6.1.2",
+    "pg-hstore": "2.3.2",
+    "tedious": "1.14.0"
+  }
+}
