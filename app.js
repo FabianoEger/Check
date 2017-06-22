@@ -20,5 +20,5 @@ const res_data = req.body;
 
 
 app.listen(8080);
-console.log("Servidor on!");
+console.log("Server on!");
 
