@@ -1,5 +1,5 @@
 {
-  "name": "tago-azure-service",
+  "name": "tago-check-service",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,6 +16,7 @@
     "koa": "2.2.0",
     "koa-body-parser": "1.1.2",
     "moment": "2.18.0",
+    "tago": "4.1.6",
     "pg": "6.1.2",
     "pg-hstore": "2.3.2",
     "tedious": "1.14.0"
