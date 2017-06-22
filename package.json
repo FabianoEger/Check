@@ -1,8 +1,8 @@
 {
-  "name": "tago-check-service",
+  "name": "tago-check-services",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +13,6 @@
     "body-parser": "^1.17.2",
     "co": "4.6.0",
     "express": "~3.2.4",
-    "koa": "2.2.0",
-    "koa-body-parser": "1.1.2",
     "moment": "2.18.0",
     "tago": "4.1.6",
     "pg": "6.1.2",
