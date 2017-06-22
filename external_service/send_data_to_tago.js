@@ -3,7 +3,7 @@ const co    = require('co');
 
 // GLOBAL VARIABLES SETTINGS FROM AXIOS
 axios.defaults.baseURL                         = 'https://api.tago.io';
-axios.defaults.headers.common['Authorization'] = '3f276097-c197-4e74-be5a-dbcf3948fefa';
+axios.defaults.headers.common['Authorization'] = 'ec418c0e-899a-4503-99e6-ef844072d2e7';
 axios.defaults.headers.post['Content-Type']    = 'application/json';
 
 module.exports = function sent_data() {
