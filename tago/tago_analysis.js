@@ -8,26 +8,30 @@ axios.defaults.headers.post['Content-Type']    = 'application/json';
 
 function sent_data_to_service(context, scope) {
 co(function* () {
+  const data_reiceved = scope.find((item) => item.variable === 'tago_check');
     //send data to scope too
-    const data = {
-        variable: 'tago_check',
+    const data = [{
+        variable: 'tago_checked',
         value: new Date().getTime(),
-    };
+    }, {
+      variable: data_reiceved.variable,
+      value: data_reiceved.value
+    }];
     const req = yield axios.post('/data', data);
-    console.log(req.data);
+    context.log(req.data);
 
 }).catch((error) => {
     if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
+      context.log(error.response.data);
+      context.log(error.response.status);
+      context.log(error.response.headers);
     } else if (error.request) {
-      console.log(error.request);
+      context.log(error.request);
     } else {
-      console.log('Error', error.message);
+      context.log('Error', error.message);
     }
-    console.log(error.config);
-  }).catch(console.log);
+    context.log(error.config);
+  }).catch(context.log);
 }
 
-module.exports = new Analysis(sent_data_to_service, 'token here');
+module.exports = new Analysis(sent_data_to_service, 'd6ae71da-9caf-4a4a-b492-b71724c28f80');
