@@ -51,4 +51,5 @@ co(function* () {
 
   if (subtract_timestamp > ms('4m') && subtract_timestamp <= ms('9m')) yield reportToSlack(`<!here|here>: Tago analysis took ${send_reports_to_slack} to run.`);
   else if (subtract_timestamp > ms('10m')) yield reportToSlack(`<!channel|channel> : Tago analysis took ${send_reports_to_slack} to run. Please, check this now.`);
+  console.log(send_reports_to_slack);
 }).catch(console.log);

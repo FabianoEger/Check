@@ -14,5 +14,12 @@ if "%DEVICE_TOKEN_TO_SUBTRACT_TIMESTAMP%" == "" (
     echo DEVICE_TOKEN_TO_SUBTRACT_TIMESTAMP can not be null
     goto loop1
 )
+:loop2
+echo Write a value to DEVICE_TOKEN_TO_SECOND_SERVICE
+set /p DEVICE_TOKEN_TO_SECOND_SERVICE=
+if "%DEVICE_TOKEN_TO_SECOND_SERVICE%" == "" (
+    echo DEVICE_TOKEN_TO_SECOND_SERVICE can not be null
+    goto loop2
+)
 
 echo End config tokens
