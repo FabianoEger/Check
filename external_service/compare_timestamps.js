@@ -6,8 +6,6 @@ const PouchDB = require('pouchdb');
 const TOKEN   = process.env.DEVICE_TOKEN_TO_SUBTRACT_TIMESTAMP;
 
 PouchDB.plugin(require('pouchdb-find'));
-axios.defaults.baseURL                      = 'https://hooks.slack.com/services';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 function tranformToObj(arr) {
   const obj = {};
@@ -28,7 +26,16 @@ function reportToSlack(msg) {
     username: 'tago-check',
     icon_emoji: ':warning:',
   };
-  return  axios.post('/T03163BD3/B608Y7CJZ/BDEk0pQFvjnvRXEzFh8tbTNu', JSON.stringify(data));
+  const axios_obj = {
+    url: 'https://hooks.slack.com/services/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',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    data,
+  };
+
+  return  axios(axios_obj);
 }
 
 co(function* () {
@@ -42,15 +49,6 @@ co(function* () {
   const subtract_timestamp    = last_timestamp_tago.value - Number(last_timestamp_db.id);
   const send_reports_to_slack = ms(subtract_timestamp, { long: true });
 
-  if (subtract_timestamp > 400000 && subtract_timestamp < 999999) {
-    const send = yield reportToSlack(`@here : Tago analysis took ${send_reports_to_slack} to run.`);
-    console.log(send.data);
-  } else if (subtract_timestamp > 1000000) {
-    const send = yield reportToSlack(`@channel : Tago analysis took ${send_reports_to_slack} to run. Please, check this now.`);
-    console.log(send.data);
-  } else {
-    console.log(`Took ${send_reports_to_slack} to run`);
-  }
+  if (subtract_timestamp > ms('4m') && subtract_timestamp <= ms('9m')) yield reportToSlack(`<!here|here>: Tago analysis took ${send_reports_to_slack} to run.`);
+  else if (subtract_timestamp > ms('10m')) yield reportToSlack(`<!channel|channel> : Tago analysis took ${send_reports_to_slack} to run. Please, check this now.`);
 }).catch(console.log);
-
-

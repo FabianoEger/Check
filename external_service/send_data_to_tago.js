@@ -3,7 +3,7 @@ const co      = require('co');
 const PouchDB = require('pouchdb');
 const TOKEN   = process.env.DEVICE_TOKEN;
 co(function* () {
-  if (!TOKEN) console.log('Run file set-env-vars.bat and configure the enviroment variables');
+  if (!TOKEN) return console.log('Run file set-env-vars.bat and configure the enviroment variables');
   const my_db     = new PouchDB('my_db');
   const my_device = new Device(TOKEN);
   const data = {
