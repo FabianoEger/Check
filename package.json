@@ -6,12 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "devDependencies": {
+    "eslint": "3.6.1",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-plugin-import": "2.0.0",
+    "eslint-plugin-jasmine": "1.8.1",
+    "eslint-plugin-jsx-a11y": "2.2.2",
+    "eslint-plugin-react": "6.3.0"
+  },
   "author": "Tago LLC",
   "license": "Apache-2.0",
   "dependencies": {
     "axios": "0.15.2",
     "co": "4.6.0",
     "moment": "2.18.0",
+    "ms": "^2.0.0",
     "pg": "6.1.2",
     "pg-hstore": "2.3.2",
     "pouchdb": "^6.2.0",

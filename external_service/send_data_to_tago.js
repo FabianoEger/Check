@@ -1,28 +1,20 @@
-const Device  = require('tago/Device');
+const Device  = require('tago/device');
 const co      = require('co');
 const PouchDB = require('pouchdb');
-
+const TOKEN   = process.env.DEVICE_TOKEN;
 co(function* () {
-  const my_db = new PouchDB('my_db');
-  const my_device = new Device('ec418c0e-899a-4503-99e6-ef844072d2e7');
-
-  yield my_device.insert({ variable: 'tago_check', value: new Date().getTime() }).then(console.log);
-
-  const get_data_from_tago = yield my_device.find({variable: 'tago_check', query: 'last_item', detail: true});
-  const data_to_insert =  { 
-    id:       get_data_from_tago[0].id,
-    variable: get_data_from_tago[0].variable,
-    value:    get_data_from_tago[0].value,
-    bucket:   get_data_from_tago[0].bucket,
-    origin:   get_data_from_tago[0].origin,
-    time:     get_data_from_tago[0].time,
+  if (!TOKEN) console.log('Run file set-env-vars.bat and configure the enviroment variables');
+  const my_db     = new PouchDB('my_db');
+  const my_device = new Device(TOKEN);
+  const data = {
+    variable: 'tago_check',
+    value: new Date().getTime(),
   };
-  const inserted_data = yield my_db.put({ 
-    _id:   get_data_from_tago[0].id, 
-    title: get_data_from_tago[0].variable, 
-    value: data_to_insert
+  yield my_device.insert(data).then(console.log);
+  const insert_timestamp_in_my_db = yield my_db.put({
+    _id: data.value.toString(),
+    created_at: new Date(data.value),
   });
 
-  yield my_db.get(inserted_data.id).then(console.log);
-
+  yield my_db.get(insert_timestamp_in_my_db.id).then(console.log);
 }).catch(console.log);
